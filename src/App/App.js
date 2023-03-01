@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import {MainContainer} from "./AppStyle";
 
 function App() {
   return (
@@ -10,11 +10,3 @@ function App() {
 
 export default App;
 
-const MainContainer = styled.div`
-  max-width: 375px;
-  height: 667px;
-  background-color: #FB6B6B;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  `
