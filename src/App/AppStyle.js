@@ -63,6 +63,10 @@ export const Pergunta = styled.div`
   display:flex;
   justify-content: space-between;
   align-items: center;
+  img {
+    width: 20px;
+    height: 23px;
+  }
 `
 
 export const H3 = styled.h3`
@@ -73,7 +77,3 @@ export const H3 = styled.h3`
   color: #333333;
 `
 
-export const IconPlay = styled.img`
-  width: 20px;
-  height: 23px;
-`
