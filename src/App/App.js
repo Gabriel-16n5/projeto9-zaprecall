@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {MainContainer, Header, Img, H1, H2, Footer, H3, Pergunta} from "./AppStyle";
+import {MainContainer, Header, Img, H1, H2, Footer, H3, Pergunta, Button, Div} from "./AppStyle";
 import logo from "../assets/logo.png";
 import iconPlay from "../assets/seta_play.png";
 import iconTurn from "../assets/seta_virar.png";
@@ -15,13 +15,14 @@ function App() {
   const [lendoPergunta, setLendoPergunta] = React.useState([]);
 
   function clicarPergunta(card, i){
+    if(lendoPergunta.includes(card.question)){
+      setLendoPergunta(card.answer)
+    } else{
+      setLendoPergunta(card.question)
+    }
     setPerguntaClicada([...perguntaClicada, card])
-    setLendoPergunta([...lendoPergunta, card])
-    const vira = perguntaClicada.includes((pc) => pc[i] === card[i])
-    setIconQuestion(vira)
-
   }
-  console.log(iconQuestion)
+  console.log(lendoPergunta)
   return (
       <MainContainer >
         <Header>
@@ -30,9 +31,15 @@ function App() {
         </Header>
           <>
           {mock.map((card, i) => 
-          <Pergunta key={i} onClick={() => clicarPergunta(card, i)} card={card}  clicarPergunta={clicarPergunta} clicado={perguntaClicada.includes(card)}>
-            <H3 >{perguntaClicada.includes(card) ? `${card.question}` : `Pergunta ${i+1}`}</H3>
+          <Pergunta key={i} onClick={() => clicarPergunta(card, i)} card={card} clicado={perguntaClicada.includes(card)}>
+            <H3 >{perguntaClicada.includes(card) ? `${lendoPergunta}` : `Pergunta ${i+1}`}</H3>
             <img src={perguntaClicada.includes(card) ? `${iconTurn}` : `${iconPlay}`} />
+            {/* Vou criar algum state aqui que vai ficar vazio, e só vai renderizar quando eu colocar algo aqui dentro */}
+            {/* <Div>
+              <Button cor={"#FF3030"}>Não lembrei</Button>
+              <Button cor={"#FF922E"}>Quase não lembrei</Button>
+              <Button cor={"#2FBE34"}>Zap!</Button>
+            </Div> */}
           </Pergunta>)}
           </>
         <Footer>

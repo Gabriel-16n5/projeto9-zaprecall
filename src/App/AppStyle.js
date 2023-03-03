@@ -62,9 +62,11 @@ export const Pergunta = styled.div`
   margin-top:15px;
   margin-bottom:15px;
   display:flex;
+  /* flex-direction:column; */
   justify-content: space-between;
   align-items: ${props => props.clicado ? "flex-start" : "center"};
   img {
+    /* display:none; */
     width: ${props => props.clicado ? "30px" : "20px"};
     height: ${props => props.clicado ? "20px" : "23px"};
     margin-top: ${props => props.clicado ? "80px" : ""};
@@ -78,4 +80,28 @@ export const H3 = styled.h3`
   font-size: ${props => props.clicado ? "18px" : "16px"};
   color: #333333;
 `
+ 
+export const Button = styled.button`
+  background-color: ${props => props.cor };
+  width: 85.17px;
+  height: 37.17px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family: "Recursive";
+  font-style: normal;
+  font-weight: 400px;
+  font-size: 12px;
+  color: #FFFFFF;
+  border-radius: 5px;
+  border: none;
+`
 
+export const Div = styled.div`
+  width: 270px;
+  display:flex;
+  flex-direction: row;
+  box-sizing:border-box;
+  padding-bottom: 10px;
+  justify-content:space-between;
+`
