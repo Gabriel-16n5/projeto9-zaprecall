@@ -10,19 +10,32 @@ let contador = 0;
 
 function App() {
   const [concluidos, setConcluidos] = React.useState(`${contador}/8 CONCLUÍDOS`);
-  const [iconQuestion, setIconQuestion] = React.useState(true);
   const [perguntaClicada, setPerguntaClicada] = React.useState([]);
   const [lendoPergunta, setLendoPergunta] = React.useState([]);
+  const [botoes, setBotoes] = React.useState([]);
 
   function clicarPergunta(card, i){
     if(lendoPergunta.includes(card.question)){
       setLendoPergunta(card.answer)
+      setBotoes([...botoes, card]);
     } else{
       setLendoPergunta(card.question)
     }
     setPerguntaClicada([...perguntaClicada, card])
   }
-  console.log(lendoPergunta)
+
+  function ImprimeBotoes(){
+    return(
+      <Div>     
+      <Button cor={"#FF3030"}>Não lembrei</Button>
+      <Button cor={"#FF922E"}>Quase não lembrei</Button>
+      <Button cor={"#2FBE34"}>Zap!</Button>
+      </Div>
+    )
+
+  }
+
+  console.log(botoes)
   return (
       <MainContainer >
         <Header>
@@ -31,15 +44,10 @@ function App() {
         </Header>
           <>
           {mock.map((card, i) => 
-          <Pergunta key={i} onClick={() => clicarPergunta(card, i)} card={card} clicado={perguntaClicada.includes(card)}>
+          <Pergunta key={i} onClick={() => clicarPergunta(card, i)} card={card} clicado={perguntaClicada.includes(card)} resposta={botoes.includes(card)} >
             <H3 >{perguntaClicada.includes(card) ? `${lendoPergunta}` : `Pergunta ${i+1}`}</H3>
-            <img src={perguntaClicada.includes(card) ? `${iconTurn}` : `${iconPlay}`} />
-            {/* Vou criar algum state aqui que vai ficar vazio, e só vai renderizar quando eu colocar algo aqui dentro */}
-            {/* <Div>
-              <Button cor={"#FF3030"}>Não lembrei</Button>
-              <Button cor={"#FF922E"}>Quase não lembrei</Button>
-              <Button cor={"#2FBE34"}>Zap!</Button>
-            </Div> */}
+            <img  src={perguntaClicada.includes(card) ? `${iconTurn}` : `${iconPlay}`} />
+            {botoes.includes(card) ? <ImprimeBotoes/> : ""}
           </Pergunta>)}
           </>
         <Footer>

@@ -62,11 +62,11 @@ export const Pergunta = styled.div`
   margin-top:15px;
   margin-bottom:15px;
   display:flex;
-  /* flex-direction:column; */
+  flex-direction: ${props => props.resposta ? "column" : "row"};
   justify-content: space-between;
   align-items: ${props => props.clicado ? "flex-start" : "center"};
   img {
-    /* display:none; */
+    display: ${props => props.resposta ? "none" : ""};
     width: ${props => props.clicado ? "30px" : "20px"};
     height: ${props => props.clicado ? "20px" : "23px"};
     margin-top: ${props => props.clicado ? "80px" : ""};
