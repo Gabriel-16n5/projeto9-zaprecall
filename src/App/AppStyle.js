@@ -79,6 +79,9 @@ export const H3 = styled.h3`
   font-weight: ${props => props.clicado ? "400" : "700"};
   font-size: ${props => props.clicado ? "18px" : "16px"};
   color: #333333;
+  /* text-decoration-line: line-through;
+  text-decoration-color: red;
+  color: red; */
 `
  
 export const Button = styled.button`

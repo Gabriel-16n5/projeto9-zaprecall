@@ -13,10 +13,15 @@ function App() {
   const [perguntaClicada, setPerguntaClicada] = React.useState([]);
   const [lendoPergunta, setLendoPergunta] = React.useState([]);
   const [botoes, setBotoes] = React.useState([]);
+  const [tipoResposta, setTipoResposta] = React.useState("");
+
+  function tipoDaResposta(){
+    return tipoResposta;
+  }
 
   function clicarPergunta(card, i){
     if(lendoPergunta.includes(card.question)){
-      setLendoPergunta(card.answer)
+      setLendoPergunta(card.answer);
       setBotoes([...botoes, card]);
     } else{
       setLendoPergunta(card.question)
@@ -25,11 +30,32 @@ function App() {
   }
 
   function ImprimeBotoes(){
+    function botaoVerde(){
+      setPerguntaClicada([])
+      setBotoes([]);
+      contador++;
+      setConcluidos(`${contador}/8 CONCLUÍDOS`)
+      setTipoResposta("verde");
+    }
+    function botaoLaranja(){
+      setPerguntaClicada([])
+      setBotoes([]);
+      contador++;
+      setConcluidos(`${contador}/8 CONCLUÍDOS`)
+      setTipoResposta("laranja");
+    }
+    function botaoVermelho(){
+      setPerguntaClicada([])
+      setBotoes([]);
+      contador++;
+      setConcluidos(`${contador}/8 CONCLUÍDOS`)
+      setTipoResposta("vermelho");
+    }
     return(
       <Div>     
-      <Button cor={"#FF3030"}>Não lembrei</Button>
-      <Button cor={"#FF922E"}>Quase não lembrei</Button>
-      <Button cor={"#2FBE34"}>Zap!</Button>
+      <Button onClick={botaoVermelho} cor={"#FF3030"}>Não lembrei</Button>
+      <Button onClick={botaoLaranja} cor={"#FF922E"}>Quase não lembrei</Button>
+      <Button onClick={botaoVerde} cor={"#2FBE34"}>Zap!</Button>
       </Div>
     )
 
@@ -44,9 +70,9 @@ function App() {
         </Header>
           <>
           {mock.map((card, i) => 
-          <Pergunta key={i} onClick={() => clicarPergunta(card, i)} card={card} clicado={perguntaClicada.includes(card)} resposta={botoes.includes(card)} >
+          <Pergunta key={i} card={card} clicado={perguntaClicada.includes(card)} resposta={botoes.includes(card)} tipoDaResposta={tipoDaResposta(card)} >
             <H3 >{perguntaClicada.includes(card) ? `${lendoPergunta}` : `Pergunta ${i+1}`}</H3>
-            <img  src={perguntaClicada.includes(card) ? `${iconTurn}` : `${iconPlay}`} />
+            <img onClick={() => clicarPergunta(card, i)} src={perguntaClicada.includes(card) ? `${iconTurn}` : `${iconPlay}`} />
             {botoes.includes(card) ? <ImprimeBotoes/> : ""}
           </Pergunta>)}
           </>
