@@ -10,17 +10,18 @@ let contador = 0;
 
 function App() {
   const [concluidos, setConcluidos] = React.useState(`${contador}/8 CONCLUÍDOS`);
-  const [iconQuestion, setIconQuestion] = React.useState();
+  const [iconQuestion, setIconQuestion] = React.useState(true);
   const [perguntaClicada, setPerguntaClicada] = React.useState([]);
+  const [lendoPergunta, setLendoPergunta] = React.useState([]);
 
-  function turnCard(){
-    setIconQuestion(iconTurn)
-  }
-
-  function clicarPergunta(card){
+  function clicarPergunta(card, i){
     setPerguntaClicada([...perguntaClicada, card])
+    setLendoPergunta([...lendoPergunta, card])
+    const vira = perguntaClicada.includes((pc) => pc[i] === card[i])
+    setIconQuestion(vira)
 
   }
+  console.log(iconQuestion)
   return (
       <MainContainer >
         <Header>
@@ -29,8 +30,8 @@ function App() {
         </Header>
           <>
           {mock.map((card, i) => 
-          <Pergunta key={i} onClick={() => clicarPergunta(card)}>
-            <H3>Pergunta {i+1}</H3>
+          <Pergunta key={i} onClick={() => clicarPergunta(card, i)} card={card}  clicarPergunta={clicarPergunta} clicado={perguntaClicada.includes(card)}>
+            <H3 >{perguntaClicada.includes(card) ? `${card.question}` : `Pergunta ${i+1}`}</H3>
             <img src={perguntaClicada.includes(card) ? `${iconTurn}` : `${iconPlay}`} />
           </Pergunta>)}
           </>

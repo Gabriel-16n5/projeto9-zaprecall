@@ -50,30 +50,32 @@ export const H2 = styled.h2`
 `
 
 export const Pergunta = styled.div`
-  width: 300px;
-  height: 65px;
-  background-color: #FFFFFF;
+  width: ${props => props.clicado ? "299px" : "300px"};
+  height: ${props => props.clicado ? "131px" : "65px"};
+  background-color: ${props => props.clicado ? "#FFFFD4" : "#FFFFFF"};
   box-sizing:border-box;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-top: ${props => props.clicado ? "20px" : "0px"};
   margin-top:15px;
   margin-bottom:15px;
   display:flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: ${props => props.clicado ? "flex-start" : "center"};
   img {
-    width: 20px;
-    height: 23px;
+    width: ${props => props.clicado ? "30px" : "20px"};
+    height: ${props => props.clicado ? "20px" : "23px"};
+    margin-top: ${props => props.clicado ? "80px" : ""};
   }
 `
 
 export const H3 = styled.h3`
   font-family: "Recursive";
   font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: ${props => props.clicado ? "400" : "700"};
+  font-size: ${props => props.clicado ? "18px" : "16px"};
   color: #333333;
 `
 
