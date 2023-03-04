@@ -90,10 +90,6 @@ export const H3 = styled.h3`
   text-decoration-line: ${props => props.tipoResposta === false ? "line-through" : ""};
   text-decoration-color: ${props => props.tipoResposta === false ? "#FF3030" : ""};
   color: ${props => props.tipoResposta === false ? "#FF3030" : ""};
-  
-  /* text-decoration-line: ${props => (props.tipoResposta === true ? "line-through" : "none")|| (props.tipoResposta === null && "line-through")||(props.tipoResposta === false ? "line-through" : "")};
-  text-decoration-color: ${props => (props.tipoResposta === true ? "#2FBE34" : "#333333")||(props.tipoResposta === null && "#FF922E")||(props.tipoResposta === false ? "#FF3030" : "")};
-  color: ${props => (props.tipoResposta === true ? "#2FBE34" : "#333333")||(props.tipoResposta === null && "#FF922E")||(props.tipoResposta === false ? "#FF3030" : "")}; */
 `
  
 export const Button = styled.button`
