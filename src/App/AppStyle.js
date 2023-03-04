@@ -78,10 +78,18 @@ export const H3 = styled.h3`
   font-style: normal;
   font-weight: ${props => props.clicado ? "400" : "700"};
   font-size: ${props => props.clicado ? "18px" : "16px"};
-  color: #333333;
-  /* text-decoration-line: line-through;
-  text-decoration-color: red;
-  color: red; */
+  /* botão verde */
+  text-decoration-line: ${props => props.tipoResposta === true ? "line-through" : "none"};
+  text-decoration-color: ${props => props.tipoResposta === true ? "#2FBE34" : "#333333"};
+  color: ${props => props.tipoResposta === true ? "#2FBE34" : "#333333"};
+  /* botão laranja */
+  text-decoration-line: ${props => props.tipoResposta === null && "line-through"};
+  text-decoration-color: ${props => props.tipoResposta === null && "#FF922E"};
+  color: ${props => props.tipoResposta === null && "#FF922E"};
+  /* botão vermelho */
+  text-decoration-line: ${props => props.tipoResposta === false ? "line-through" : ""};
+  text-decoration-color: ${props => props.tipoResposta === false ? "#FF3030" : ""};
+  color: ${props => props.tipoResposta === false ? "#FF3030" : ""};
 `
  
 export const Button = styled.button`
