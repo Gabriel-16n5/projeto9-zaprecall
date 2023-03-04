@@ -71,6 +71,9 @@ export const Pergunta = styled.div`
     height: ${props => props.clicado ? "20px" : "23px"};
     margin-top: ${props => props.clicado ? "80px" : ""};
   }
+  span {
+    display: ${props => props.resposta ? "" : "none"};
+  }
 `
 
 export const H3 = styled.h3`

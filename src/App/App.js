@@ -1,9 +1,10 @@
-import styled from "styled-components";
 import {MainContainer, Header, Img, H1, H2, Footer, H3, Pergunta, Button, Div} from "./AppStyle";
 import logo from "../assets/logo.png";
 import iconPlay from "../assets/seta_play.png";
 import iconTurn from "../assets/seta_virar.png";
 import iconCorrect from "../assets/icone_certo.png";
+import iconErrado from "../assets/icone_erro.png";
+import iconQuase from "../assets/icone_quase.png";
 import React from "react";
 import mock from "../mock";
 let contador = 0;
@@ -14,11 +15,8 @@ function App() {
   const [lendoPergunta, setLendoPergunta] = React.useState([]);
   const [botoes, setBotoes] = React.useState([]);
   const [tipoResposta, setTipoResposta] = React.useState();
+  const [icon, setIcon] = React.useState(iconPlay);
 
-  function tipoDaResposta(){
-    return tipoResposta;
-  }
-  console.log(tipoResposta)
   function clicarPergunta(card, i){
     if(lendoPergunta.includes(card.question)){
       setLendoPergunta(card.answer);
@@ -36,6 +34,7 @@ function App() {
       contador++;
       setConcluidos(`${contador}/8 CONCLUÍDOS`)
       setTipoResposta(true);
+      setIcon(iconCorrect)
     }
     function botaoLaranja(){
       setPerguntaClicada([])
@@ -43,6 +42,7 @@ function App() {
       contador++;
       setConcluidos(`${contador}/8 CONCLUÍDOS`)
       setTipoResposta(null);
+      setIcon(iconQuase)
     }
     function botaoVermelho(){
       setPerguntaClicada([])
@@ -50,18 +50,17 @@ function App() {
       contador++;
       setConcluidos(`${contador}/8 CONCLUÍDOS`)
       setTipoResposta(false);
+      setIcon(iconErrado)
     }
     return(
       <Div>     
-      <Button onClick={botaoVermelho} cor={"#FF3030"}>Não lembrei</Button>
-      <Button onClick={botaoLaranja} cor={"#FF922E"}>Quase não lembrei</Button>
-      <Button onClick={botaoVerde} cor={"#2FBE34"}>Zap!</Button>
+      <Button data-test="no-btn" onClick={botaoVermelho} cor={"#FF3030"}>Não lembrei</Button>
+      <Button data-test="partial-btn" onClick={botaoLaranja} cor={"#FF922E"}>Quase não lembrei</Button>
+      <Button data-test="zap-btn" onClick={botaoVerde} cor={"#2FBE34"}>Zap!</Button>
       </Div>
     )
 
   }
-
-  console.log(botoes)
   return (
       <MainContainer >
         <Header>
@@ -70,14 +69,15 @@ function App() {
         </Header>
           <>
           {mock.map((card, i) => 
-          <Pergunta key={i} card={card} clicado={perguntaClicada.includes(card)} resposta={botoes.includes(card)} >
-            <H3 tipoResposta={tipoResposta} >{perguntaClicada.includes(card) ? `${lendoPergunta}` : `Pergunta ${i+1}`} </H3>
-            <img onClick={() => clicarPergunta(card, i)} src={perguntaClicada.includes(card) ? `${iconTurn}` : `${iconPlay}`} />
+          <Pergunta data-test="flashcard" key={i} card={card} clicado={perguntaClicada.includes(card)} resposta={botoes.includes(card)} >
+            <H3 data-test="flashcard-text" tipoResposta={tipoResposta} >{perguntaClicada.includes(card) ? `${lendoPergunta}` : `Pergunta ${i+1}`} </H3>
+            <img data-test="play-btn" onClick={() => clicarPergunta(card, i)} src={perguntaClicada.includes(card) ? `${iconTurn}` : `${icon}`} alt="" />
+            <span data-test="turn-btn" onClick={() => clicarPergunta(card, i)} ><img src={perguntaClicada.includes(card) ? `${iconTurn}` : `${iconPlay}`} alt="" /></span>
             {botoes.includes(card) ? <ImprimeBotoes/> : ""}
           </Pergunta>)}
           </>
         <Footer>
-          <H2>{concluidos}</H2>
+          <H2 data-test="footer" >{concluidos}</H2>
         </Footer>
       </MainContainer>
   );
