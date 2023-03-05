@@ -70,9 +70,10 @@ export const Pergunta = styled.div`
     width: ${props => props.clicado ? "30px" : "20px"};
     height: ${props => props.clicado ? "20px" : "23px"};
     margin-top: ${props => props.clicado ? "80px" : ""};
+    border:none;
   }
   span {
-    display: ${props => props.resposta ? "" : "none"};
+    display: ${props => props.resposta ? "none" : ""};
   }
 `
 

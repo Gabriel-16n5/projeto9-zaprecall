@@ -13,21 +13,37 @@ function App() {
   const [concluidos, setConcluidos] = React.useState(`${contador}/8 CONCLUÍDOS`);
   const [perguntaClicada, setPerguntaClicada] = React.useState([]);
   const [lendoPergunta, setLendoPergunta] = React.useState([]);
+  const [mostraPergunta, setMostraPergunta] = React.useState([]);
   const [botoes, setBotoes] = React.useState([]);
   const [tipoResposta, setTipoResposta] = React.useState();
-  const [icon, setIcon] = React.useState(iconPlay);
+  const [icon, setIcon] = React.useState();
+  const [inicio, setInicio] = React.useState([]);
+  const [inicioIcon, setInicioIcon] = React.useState([]);
+  const [iconVerde, setIconVerde] = React.useState([])
+
 
   function clicarPergunta(card, i){
+    if(tipoResposta === true){
+      const attArray = [...iconVerde, card.question];
+      setIconVerde(attArray);
+    }
     if(lendoPergunta.includes(card.question)){
       setLendoPergunta(card.answer);
       setBotoes([...botoes, card]);
+      setMostraPergunta(card.question)
     } else{
       setLendoPergunta(card.question)
+      setInicio(card.question)
+      setInicioIcon(card.question)
+      setMostraPergunta(card.question)
     }
     setPerguntaClicada([...perguntaClicada, card])
+    
   }
 
-  function ImprimeBotoes(){
+
+  function ImprimeBotoes(card){
+
     function botaoVerde(){
       setPerguntaClicada([])
       setBotoes([]);
@@ -35,6 +51,8 @@ function App() {
       setConcluidos(`${contador}/8 CONCLUÍDOS`)
       setTipoResposta(true);
       setIcon(iconCorrect)
+      setInicio([])
+      
     }
     function botaoLaranja(){
       setPerguntaClicada([])
@@ -43,6 +61,7 @@ function App() {
       setConcluidos(`${contador}/8 CONCLUÍDOS`)
       setTipoResposta(null);
       setIcon(iconQuase)
+      setInicio([])
     }
     function botaoVermelho(){
       setPerguntaClicada([])
@@ -51,6 +70,7 @@ function App() {
       setConcluidos(`${contador}/8 CONCLUÍDOS`)
       setTipoResposta(false);
       setIcon(iconErrado)
+      setInicio([])
     }
     return(
       <Div>     
@@ -70,10 +90,12 @@ function App() {
           <>
           {mock.map((card, i) => 
           <Pergunta data-test="flashcard" key={i} card={card} clicado={perguntaClicada.includes(card)} resposta={botoes.includes(card)} >
-            <H3 data-test="flashcard-text" tipoResposta={tipoResposta} >{perguntaClicada.includes(card) ? `${lendoPergunta}` : `Pergunta ${i+1}`} </H3>
-            <img data-test="play-btn" onClick={() => clicarPergunta(card, i)} src={perguntaClicada.includes(card) ? `${iconTurn}` : `${icon}`} alt="" />
-            <span data-test="turn-btn" onClick={() => clicarPergunta(card, i)} ><img src={perguntaClicada.includes(card) ? `${iconTurn}` : `${iconPlay}`} alt="" /></span>
-            {botoes.includes(card) ? <ImprimeBotoes/> : ""}
+            {inicio.indexOf(card.question) ? <H3 data-test="flashcard-text" tipoResposta={tipoResposta} >{`Pergunta ${i+1}`} </H3> : `${lendoPergunta}`}
+            {inicioIcon.indexOf(card.question)? <img data-test="play-btn" onClick={() => clicarPergunta(card, i)} src={iconPlay} alt="" /> : ""}
+            {inicioIcon.includes(card.question) && <img data-test="play-btn" src={icon} alt="" />}
+            {lendoPergunta.indexOf(card.question) ? "" : <img data-test="turn-btn" onClick={() => clicarPergunta(card, i)} src={perguntaClicada.includes(card) && `${iconTurn}`} alt="" />}
+            {lendoPergunta.includes(card.question) ? "" : ""}
+            {botoes.includes(card) ? <ImprimeBotoes card={card.question}/> : ""}
           </Pergunta>)}
           </>
         <Footer>
