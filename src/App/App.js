@@ -26,6 +26,8 @@ function App() {
   const [quase, setQuase] = React.useState([])
   const [errou, setErrou] = React.useState([])
   const [pipoca, setPipoca] = React.useState(false);
+  const [pipocaa, setPipocaa] = React.useState(false);
+  const [pipocaaa, setPipocaaa] = React.useState(false);
   const [visivel, setVisivel] = React.useState(true);
 
 
@@ -69,7 +71,6 @@ function App() {
       setInicio([])
       test(card);
       setPipoca(true)
-      setAcertou(true)
       setVisivel(false)
     }
     function botaoLaranja(){
@@ -80,6 +81,8 @@ function App() {
       setTipoResposta(null);
       setIcon(iconQuase)
       setInicio([])
+      setPipocaa(true)
+      setVisivel(false)
     }
     function botaoVermelho(){
       setPerguntaClicada([])
@@ -89,6 +92,8 @@ function App() {
       setTipoResposta(false);
       setIcon(iconErrado)
       setInicio([])
+      setPipocaaa(true)
+      setVisivel(false)
     }
     return(
       <Div>     
@@ -116,7 +121,9 @@ function App() {
             {inicioIcon.indexOf(card.question)? <img data-test="play-btn" onClick={() => clicarPergunta(card, i)} src={iconPlay} alt="" /> : ""}
             {lendoPergunta.indexOf(card.question) ? "" : <img data-test="turn-btn" onClick={() => clicarPergunta(card, i)} src={perguntaClicada.includes(card) && `${iconTurn}`} alt="" />}
             {botoes.includes(card) ? <ImprimeBotoes card={card.question}/> : ""}
-            {pipoca === false ? "" : <H4 data-test="flashcard-text" acertou={acertou === true} >{`Perguntaaa ${i+1}`} </H4>}
+            {pipoca === false ? "" : <H4 data-test="flashcard-text" tipoResposta={tipoResposta} >{`Perguntaaa ${i+1}`} </H4>}
+            {pipocaa === false ? "" : <H4 data-test="flashcard-text" tipoResposta={tipoResposta} >{`Perguntaaa ${i+1}`} </H4>}
+            {pipocaaa === false ? "" : <H4 data-test="flashcard-text" tipoResposta={tipoResposta} >{`Perguntaaa ${i+1}`} </H4>}
             {visivel === false && <span><img visivel={visivel === true} data-test="play-btn" src={icon} alt="" /></span>}
           </Pergunta>)}
           </>
