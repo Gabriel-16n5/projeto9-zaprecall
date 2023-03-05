@@ -83,9 +83,28 @@ export const H3 = styled.h3`
   font-weight: ${props => props.clicado ? "400" : "700"};
   font-size: ${props => props.clicado ? "18px" : "16px"};
   /* botão verde */
-  text-decoration-line: ${props => props.tipoResposta === true ? "line-through" : "none"};
-  text-decoration-color: ${props => props.tipoResposta === true ? "#2FBE34" : "#333333"};
-  color: ${props => props.tipoResposta === true ? "#2FBE34" : "#333333"};
+  text-decoration-line: ${props => props.acertou === true ? "line-through" : "none"};
+  text-decoration-color: ${props => props.acertou === true ? "#2FBE34" : "#333333"};
+  color: ${props => props.acertou === true ? "#2FBE34" : "#333333"};
+  /* botão laranja */
+  text-decoration-line: ${props => props.tipoResposta === null && "line-through"};
+  text-decoration-color: ${props => props.tipoResposta === null && "#FF922E"};
+  color: ${props => props.tipoResposta === null && "#FF922E"};
+  /* botão vermelho */
+  text-decoration-line: ${props => props.tipoResposta === false ? "line-through" : ""};
+  text-decoration-color: ${props => props.tipoResposta === false ? "#FF3030" : ""};
+  color: ${props => props.tipoResposta === false ? "#FF3030" : ""};
+`
+
+export const H4 = styled.h4`
+  font-family: "Recursive";
+  font-style: normal;
+  font-weight: ${props => props.clicado ? "400" : "700"};
+  font-size: ${props => props.clicado ? "18px" : "16px"};
+  /* botão verde */
+  text-decoration-line: ${props => props.acertou === true ? "line-through" : "none"};
+  text-decoration-color: ${props => props.acertou === true ? "#2FBE34" : "#333333"};
+  color: ${props => props.acertou === true ? "#2FBE34" : "#333333"};
   /* botão laranja */
   text-decoration-line: ${props => props.tipoResposta === null && "line-through"};
   text-decoration-color: ${props => props.tipoResposta === null && "#FF922E"};
