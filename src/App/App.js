@@ -28,7 +28,7 @@ function App() {
   const [pipoca, setPipoca] = React.useState(false);
   const [pipocaa, setPipocaa] = React.useState(false);
   const [pipocaaa, setPipocaaa] = React.useState(false);
-  const [visivel, setVisivel] = React.useState(true);
+  const [visivel, setVisivel] = React.useState();
 
 
   function clicarPergunta(card, i){
@@ -71,7 +71,7 @@ function App() {
       setInicio([])
       test(card);
       setPipoca(true)
-      setVisivel(false)
+      setVisivel(true)
     }
     function botaoLaranja(){
       setPerguntaClicada([])
@@ -82,7 +82,7 @@ function App() {
       setIcon(iconQuase)
       setInicio([])
       setPipocaa(true)
-      setVisivel(false)
+      setVisivel(null)
     }
     function botaoVermelho(){
       setPerguntaClicada([])
@@ -124,7 +124,9 @@ function App() {
             {pipoca === false ? "" : <H4 data-test="flashcard-text" tipoResposta={tipoResposta} >{`Perguntaaa ${i+1}`} </H4>}
             {pipocaa === false ? "" : <H4 data-test="flashcard-text" tipoResposta={tipoResposta} >{`Perguntaaa ${i+1}`} </H4>}
             {pipocaaa === false ? "" : <H4 data-test="flashcard-text" tipoResposta={tipoResposta} >{`Perguntaaa ${i+1}`} </H4>}
-            {visivel === false && <span><img visivel={visivel === true} data-test="play-btn" src={icon} alt="" /></span>}
+            {visivel === true && <span><img visivel={visivel === true} data-test="play-btn" src={iconCorrect} alt="" /></span>}
+            {visivel === null && <span><img visivel={visivel === true} data-test="play-btn" src={iconQuase} alt="" /></span>}
+            {visivel === false && <span><img visivel={visivel === true} data-test="play-btn" src={iconErrado} alt="" /></span>}
           </Pergunta>)}
           </>
         <Footer>
