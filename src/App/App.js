@@ -26,6 +26,7 @@ function App() {
   const [quase, setQuase] = React.useState([])
   const [errou, setErrou] = React.useState([])
   const [pipoca, setPipoca] = React.useState(false);
+  const [visivel, setVisivel] = React.useState(true);
 
 
   function clicarPergunta(card, i){
@@ -69,6 +70,7 @@ function App() {
       test(card);
       setPipoca(true)
       setAcertou(true)
+      setVisivel(false)
     }
     function botaoLaranja(){
       setPerguntaClicada([])
@@ -115,7 +117,7 @@ function App() {
             {lendoPergunta.indexOf(card.question) ? "" : <img data-test="turn-btn" onClick={() => clicarPergunta(card, i)} src={perguntaClicada.includes(card) && `${iconTurn}`} alt="" />}
             {botoes.includes(card) ? <ImprimeBotoes card={card.question}/> : ""}
             {pipoca === false ? "" : <H4 data-test="flashcard-text" acertou={acertou === true} >{`Perguntaaa ${i+1}`} </H4>}
-            {inicioIcon.includes(card.question) && <img data-test="play-btn" src={icon} alt="" />}
+            {visivel === false && <span><img visivel={visivel === true} data-test="play-btn" src={icon} alt="" /></span>}
           </Pergunta>)}
           </>
         <Footer>
