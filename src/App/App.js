@@ -121,9 +121,9 @@ function App() {
             {inicioIcon.indexOf(card.question)? <img data-test="play-btn" onClick={() => clicarPergunta(card, i)} src={iconPlay} alt="" /> : ""}
             {lendoPergunta.indexOf(card.question) ? "" : <img data-test="turn-btn" onClick={() => clicarPergunta(card, i)} src={perguntaClicada.includes(card) && `${iconTurn}`} alt="" />}
             {botoes.includes(card) ? <ImprimeBotoes card={card.question}/> : ""}
-            {pipoca === false ? "" : <H4 data-test="flashcard-text" tipoResposta={tipoResposta} >{`Perguntaaa ${i+1}`} </H4>}
-            {pipocaa === false ? "" : <H4 data-test="flashcard-text" tipoResposta={tipoResposta} >{`Perguntaaa ${i+1}`} </H4>}
-            {pipocaaa === false ? "" : <H4 data-test="flashcard-text" tipoResposta={tipoResposta} >{`Perguntaaa ${i+1}`} </H4>}
+            {pipoca === false ? "" : <H4 data-test="flashcard-text" tipoResposta={tipoResposta} >{`Pergunta ${i+1}`} </H4>}
+            {pipocaa === false ? "" : <H4 data-test="flashcard-text" tipoResposta={tipoResposta} >{`Pergunta ${i+1}`} </H4>}
+            {pipocaaa === false ? "" : <H4 data-test="flashcard-text" tipoResposta={tipoResposta} >{`Pergunta ${i+1}`} </H4>}
             {visivel === true && <span><img visivel={visivel === true} data-test="zap-icon" src={iconCorrect} alt="" /></span>}
             {visivel === null && <span><img visivel={visivel === true} data-test="partial-icon" src={iconQuase} alt="" /></span>}
             {visivel === false && <span><img visivel={visivel === true} data-test="no-icon" src={iconErrado} alt="" /></span>}
