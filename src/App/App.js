@@ -65,7 +65,7 @@ function App() {
       setPerguntaClicada([])
       setBotoes([]);
       contador++;
-      setConcluidos(`${contador}/8 CONCLUÍDOS`)
+      setConcluidos(`${contador}/3 CONCLUÍDOS`)
       setTipoResposta(true);
       setIcon(iconCorrect)
       setInicio([])
@@ -77,7 +77,7 @@ function App() {
       setPerguntaClicada([])
       setBotoes([]);
       contador++;
-      setConcluidos(`${contador}/8 CONCLUÍDOS`)
+      setConcluidos(`${contador}/3 CONCLUÍDOS`)
       setTipoResposta(null);
       setIcon(iconQuase)
       setInicio([])
@@ -88,7 +88,7 @@ function App() {
       setPerguntaClicada([])
       setBotoes([]);
       contador++;
-      setConcluidos(`${contador}/8 CONCLUÍDOS`)
+      setConcluidos(`${contador}/3 CONCLUÍDOS`)
       setTipoResposta(false);
       setIcon(iconErrado)
       setInicio([])
