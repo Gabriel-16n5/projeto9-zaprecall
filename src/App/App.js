@@ -11,7 +11,7 @@ let contador = 0;
 let sapo;
 
 function App() {
-  const [concluidos, setConcluidos] = React.useState(`${contador}/8 CONCLUÍDOS`);
+  const [concluidos, setConcluidos] = React.useState(`${contador}/3 CONCLUÍDOS`);
   const [perguntaClicada, setPerguntaClicada] = React.useState([]);
   const [lendoPergunta, setLendoPergunta] = React.useState([]);
   const [mostraPergunta, setMostraPergunta] = React.useState([]);
@@ -128,7 +128,7 @@ function App() {
             {visivel === null && <span><img visivel={visivel === true} data-test="partial-icon" src={iconQuase} alt="" /></span>}
             {visivel === false && <span><img visivel={visivel === true} data-test="no-icon" src={iconErrado} alt="" /></span>}
           </Pergunta>)}
-          </>
+          </> asda
         <Footer>
           <H2 data-test="footer" >{concluidos}</H2>
         </Footer>
